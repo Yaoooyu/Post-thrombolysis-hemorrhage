@@ -1,0 +1,14 @@
+{
+  "method": "single_mlp_fusion_ehr_initialvec_img512",
+  "input_dim": 1304,
+  "hidden": [
+    768,
+    384
+  ],
+  "dropout": 0.4,
+  "best_val_roc_auc": 0.8058823529411765,
+  "test_roc_auc": 0.8053030303030303,
+  "n_train": 341,
+  "n_val": 74,
+  "n_test": 73
+}
