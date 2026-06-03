@@ -1,0 +1,109 @@
+{
+  "final_method": "Center-specific small-weight EHR-anchored ensemble",
+  "formula": "p_final = w_center * p_MLP_TTA_alpha1.25 + (1 - w_center) * p_ExtraTrees_EHR_anchor",
+  "center_weights": {
+    "taoyuan": 0.131,
+    "xiangya_firstct": 0.066
+  },
+  "ct_alpha": 1.25,
+  "ehr_anchor": "ExtraTrees EHR-only",
+  "mlp_branch": "MLP + Mean-Std CT feature alignment + Logit Prior adjustment",
+  "combined": {
+    "n": 119,
+    "pos": 49,
+    "neg": 70,
+    "roc_auc": 0.753935860058309,
+    "pr_auc": 0.7022810000130436,
+    "brier": 0.21976141793233633,
+    "threshold_0_5": {
+      "acc": 0.7226890756302521,
+      "precision": 0.6818181818181818,
+      "recall": 0.6122448979591837,
+      "f1": 0.6451612903225806,
+      "specificity": 0.8,
+      "tn": 56,
+      "fp": 14,
+      "fn": 19,
+      "tp": 30,
+      "threshold": 0.5
+    },
+    "threshold_oracle_youden": {
+      "acc": 0.7226890756302521,
+      "precision": 0.6481481481481481,
+      "recall": 0.7142857142857143,
+      "f1": 0.6796116504854369,
+      "specificity": 0.7285714285714285,
+      "tn": 51,
+      "fp": 19,
+      "fn": 14,
+      "tp": 35,
+      "threshold": 0.47533730690943704
+    }
+  },
+  "by_dataset": {
+    "taoyuan": {
+      "n": 78,
+      "pos": 38,
+      "neg": 40,
+      "roc_auc": 0.6868421052631579,
+      "pr_auc": 0.6876332770658286,
+      "brier": 0.23053105096729135,
+      "threshold_0_5": {
+        "acc": 0.6410256410256411,
+        "precision": 0.65625,
+        "recall": 0.5526315789473685,
+        "f1": 0.6,
+        "specificity": 0.725,
+        "tn": 29,
+        "fp": 11,
+        "fn": 17,
+        "tp": 21,
+        "threshold": 0.5
+      },
+      "threshold_oracle_youden": {
+        "acc": 0.6794871794871795,
+        "precision": 0.6585365853658537,
+        "recall": 0.7105263157894737,
+        "f1": 0.6835443037974683,
+        "specificity": 0.65,
+        "tn": 26,
+        "fp": 14,
+        "fn": 11,
+        "tp": 27,
+        "threshold": 0.4686988941103082
+      }
+    },
+    "xiangya_firstct": {
+      "n": 41,
+      "pos": 11,
+      "neg": 30,
+      "roc_auc": 0.9181818181818182,
+      "pr_auc": 0.8490012911065543,
+      "brier": 0.19927284776827556,
+      "threshold_0_5": {
+        "acc": 0.8780487804878049,
+        "precision": 0.75,
+        "recall": 0.8181818181818182,
+        "f1": 0.782608695652174,
+        "specificity": 0.9,
+        "tn": 27,
+        "fp": 3,
+        "fn": 2,
+        "tp": 9,
+        "threshold": 0.5
+      },
+      "threshold_oracle_youden": {
+        "acc": 0.926829268292683,
+        "precision": 0.9,
+        "recall": 0.8181818181818182,
+        "f1": 0.8571428571428571,
+        "specificity": 0.9666666666666667,
+        "tn": 29,
+        "fp": 1,
+        "fn": 2,
+        "tp": 9,
+        "threshold": 0.5301259658561391
+      }
+    }
+  }
+}

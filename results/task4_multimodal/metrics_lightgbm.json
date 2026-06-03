@@ -1,0 +1,21 @@
+{
+  "model": "lightgbm",
+  "calibrated": false,
+  "val_roc_auc": 0.7393382352941177,
+  "test_roc_auc": 0.7818181818181819,
+  "val_pr_auc": 0.7245566731295975,
+  "test_pr_auc": 0.7520657505670868,
+  "test_auc_bootstrap_ci95": {
+    "median": 0.782239625989626,
+    "p2_5": 0.670411036036036,
+    "p97_5": 0.879175078279499,
+    "n_boot_effective": 500
+  },
+  "n_train": 341,
+  "n_val": 74,
+  "n_test": 73,
+  "n_features": 536,
+  "seed": 42,
+  "train_seconds": 0.20280694961547852,
+  "calibration_method": "none"
+}

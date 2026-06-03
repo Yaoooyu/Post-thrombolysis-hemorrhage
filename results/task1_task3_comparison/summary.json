@@ -1,0 +1,44 @@
+{
+  "tasks": [
+    {
+      "name": "task01_ehr_only",
+      "title": "Task 1: EHR only",
+      "manifest": "/root/autodl-fs/lyy/data_split_manifest_ct488.csv",
+      "source_table": "/root/autodl-fs/lyy/onlytext_renumbered.xlsx",
+      "predictor_path": "/root/autodl-fs/lyy/unified_runs_v2/text_ehr/AutoGluonModels",
+      "preset": "best_quality",
+      "time_limit": 900,
+      "num_stack_levels": 1,
+      "n_features": 24,
+      "n_train": 341,
+      "n_val": 74,
+      "n_test": 73,
+      "best_model_by_val_auc": "WeightedEnsemble_L2",
+      "val_roc_auc": 0.6919117647058823,
+      "val_accuracy": 0.5945945945945946,
+      "test_roc_auc": 0.8143939393939394,
+      "test_accuracy": 0.7671232876712328,
+      "elapsed_sec": 964.2686927318573
+    },
+    {
+      "name": "task02_ehr_plus_ct_report",
+      "title": "Task 2: EHR + CT report embedding",
+      "manifest": "/root/autodl-fs/lyy/data_split_manifest_ct488.csv",
+      "source_table": "/root/autodl-fs/lyy/finaltext_renumbered.xlsx",
+      "predictor_path": "/root/autodl-fs/lyy/unified_runs_v2/text_ehr_plus_ct_report_vec/AutoGluonModels",
+      "preset": "best_quality",
+      "time_limit": 900,
+      "num_stack_levels": 1,
+      "n_features": 792,
+      "n_train": 341,
+      "n_val": 74,
+      "n_test": 73,
+      "best_model_by_val_auc": "WeightedEnsemble_L3",
+      "val_roc_auc": 0.7044117647058823,
+      "val_accuracy": 0.6486486486486487,
+      "test_roc_auc": 0.693939393939394,
+      "test_accuracy": 0.6301369863013698,
+      "elapsed_sec": 933.4616906642914
+    }
+  ]
+}

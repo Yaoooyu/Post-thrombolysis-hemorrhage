@@ -1,0 +1,50 @@
+{
+  "method": "ehr24 + img512 -> logreg (median-impute+zscore, train-only)",
+  "test_roc_auc": 0.8553030303030302,
+  "val_roc_auc": 0.7698529411764706,
+  "test_pr_auc": 0.8383991791992791,
+  "val_pr_auc": 0.791183766292873,
+  "test_acc_0_5": 0.7671232876712328,
+  "val_acc_0_5": 0.7162162162162162,
+  "test_precision_0_5": 0.7352941176470589,
+  "val_precision_0_5": 0.76,
+  "test_recall_0_5": 0.7575757575757576,
+  "val_recall_0_5": 0.5588235294117647,
+  "test_f1_0_5": 0.746268656716418,
+  "val_f1_0_5": 0.6440677966101694,
+  "test_specificity_0_5": 0.775,
+  "val_specificity_0_5": 0.85,
+  "test_confusion_0_5": [
+    [
+      31,
+      9
+    ],
+    [
+      8,
+      25
+    ]
+  ],
+  "val_confusion_0_5": [
+    [
+      34,
+      6
+    ],
+    [
+      15,
+      19
+    ]
+  ],
+  "val_best_threshold_youden": 0.3850988624367907,
+  "test_acc_youden": 0.7534246575342466,
+  "test_precision_youden": 0.6744186046511628,
+  "test_recall_youden": 0.8787878787878788,
+  "test_f1_youden": 0.7631578947368421,
+  "test_specificity_youden": 0.65,
+  "n_train": 341,
+  "n_val": 74,
+  "n_test": 73,
+  "n_features": 536,
+  "seed": 42,
+  "train_seconds": 0.019327402114868164,
+  "C": 1.0
+}

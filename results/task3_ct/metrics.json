@@ -1,0 +1,45 @@
+{
+  "val": {
+    "n": 74,
+    "pos": 34,
+    "End-to-End 3D ResNet-18": {
+      "roc_auc": 0.7242647058823529,
+      "accuracy": 0.7027027027027027
+    },
+    "3D ResNet-18 features + LightGBM": {
+      "roc_auc": 0.7191176470588235,
+      "accuracy": 0.6351351351351351
+    },
+    "3D ResNet-18 features + LogReg": {
+      "roc_auc": 0.7169117647058824,
+      "accuracy": 0.6891891891891891
+    },
+    "3D ResNet-18 features + MLP": {
+      "roc_auc": 0.700735294117647,
+      "accuracy": 0.6891891891891891
+    }
+  },
+  "test": {
+    "n": 73,
+    "pos": 33,
+    "End-to-End 3D ResNet-18": {
+      "roc_auc": 0.6977272727272726,
+      "accuracy": 0.6712328767123288
+    },
+    "3D ResNet-18 features + LightGBM": {
+      "roc_auc": 0.6015151515151516,
+      "accuracy": 0.5616438356164384
+    },
+    "3D ResNet-18 features + LogReg": {
+      "roc_auc": 0.7363636363636363,
+      "accuracy": 0.6575342465753424
+    },
+    "3D ResNet-18 features + MLP": {
+      "roc_auc": 0.6507575757575758,
+      "accuracy": 0.684931506849315
+    }
+  },
+  "manifest": "/root/autodl-fs/lyy/data_split_manifest_ct488.csv",
+  "resnet18_checkpoint": "/root/autodl-fs/lyy/unified_runs/ct/best_ct_resnet18.pth",
+  "image_features_csv": "/root/autodl-fs/lyy/unified_runs/image_features_ct488.csv"
+}

@@ -1,0 +1,21 @@
+{
+  "model": "catboost",
+  "calibrated": false,
+  "val_roc_auc": 0.7419117647058824,
+  "test_roc_auc": 0.8166666666666667,
+  "val_pr_auc": 0.7393585713388653,
+  "test_pr_auc": 0.7969494599688645,
+  "test_auc_bootstrap_ci95": {
+    "median": 0.8165514592933948,
+    "p2_5": 0.6951078708525517,
+    "p97_5": 0.9042194023651824,
+    "n_boot_effective": 500
+  },
+  "n_train": 341,
+  "n_val": 74,
+  "n_test": 73,
+  "n_features": 536,
+  "seed": 42,
+  "train_seconds": 51.37928295135498,
+  "calibration_method": "none"
+}

@@ -1,0 +1,12 @@
+{
+  "method": "mean_ensemble_of_test_probs (no meta training, no leakage)",
+  "models": [
+    "catboost",
+    "lightgbm",
+    "xgboost"
+  ],
+  "test_roc_auc": 0.8,
+  "test_pr_auc": 0.7811652315085461,
+  "n_test": 73,
+  "note": "如需真正 stacking，请让基模型同时导出 val_pred_*.csv，再用 val 训练 meta。"
+}

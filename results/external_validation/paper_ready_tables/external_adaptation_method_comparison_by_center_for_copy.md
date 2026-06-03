@@ -1,0 +1,10 @@
+| Method | Type | Taoyuan AUC | Taoyuan PR-AUC | Xiangya AUC | Xiangya PR-AUC | Pooled AUC | Pooled PR-AUC |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| MLP without adaptation | MLP branch | 0.568 | 0.529 | 0.567 | 0.434 | 0.518 | 0.443 |
+| Mean-Std TTA | MLP branch | 0.672 | 0.624 | 0.648 | 0.483 | 0.604 | 0.499 |
+| Mean-Std + Logit Prior | MLP branch | 0.672 | 0.624 | 0.648 | 0.483 | 0.658 | 0.558 |
+| Modality reliability weighting | MLP-TTA branch | 0.686 | 0.634 | 0.630 | 0.471 | 0.661 | 0.561 |
+| ExtraTrees EHR-anchor only | EHR-anchor / ensemble | 0.628 | 0.642 | 0.921 | 0.866 | 0.724 | 0.671 |
+| ExtraTrees + MLP-TTA, fixed w=0.5 | EHR-anchor / ensemble | 0.688 | 0.684 | 0.730 | 0.573 | 0.697 | 0.637 |
+| Single pooled center-weighted fusion | Reference | 0.687 | 0.688 | 0.918 | 0.849 | 0.754 | 0.702 |
+| Hospital-specific optimized fusion (final) | Final | 0.713 | 0.698 | 0.918 | 0.849 | 0.734 | 0.668 |

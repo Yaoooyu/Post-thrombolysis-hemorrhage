@@ -1,0 +1,17 @@
+{
+  "method": "ehr24 + img512 -> MLP (median-impute+zscore, train-only)",
+  "hidden": [
+    256,
+    128
+  ],
+  "dropout": 0.3,
+  "best_val_roc_auc": 0.7852941176470588,
+  "test_roc_auc": 0.8696969696969697,
+  "best_val_pr_auc": 0.7781907694650758,
+  "test_pr_auc": 0.8014580700067823,
+  "n_train": 341,
+  "n_val": 74,
+  "n_test": 73,
+  "n_features": 536,
+  "seed": 42
+}

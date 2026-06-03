@@ -1,0 +1,97 @@
+# 溶栓后出血课题 — 模型与数据路径索引（绝对路径）
+# 根目录：/root/autodl-fs/lyy
+# 若本机挂载为 /autodl-fs/data/lyy，请自行替换前缀，二者常为同一路径的符号链接。
+
+====== 统一划分与 488 例清单 ======
+数据划分（541 行全表）     /root/autodl-fs/lyy/data_split_manifest.csv
+数据划分（488 例有 CT）   /root/autodl-fs/lyy/data_split_manifest_ct488.csv
+划分摘要                  /root/autodl-fs/lyy/data_split_summary.txt
+主表（带 global_id 等）    /root/autodl-fs/lyy/finaltext_renumbered.xlsx
+
+====== 任务 01：纯 EHR（AutoGluon）======
+训练输出（与冻结副本内容一致，任选其一用于 load）：
+
+  /root/autodl-fs/lyy/unified_runs/text_ehr/AutoGluonModels/
+  /root/autodl-fs/lyy/unified_runs/text_ehr/metrics.json
+
+冻结副本（推荐离线/打包带走）：
+
+  /root/autodl-fs/lyy/frozen_models/task_01_ehr_AutoGluonModels/
+  /root/autodl-fs/lyy/frozen_models/task_01_text_ehr_metrics.json
+
+====== 任务 02：EHR + CT 报告向量 initial_vec_*（AutoGluon）======
+训练输出：
+
+  /root/autodl-fs/lyy/unified_runs/text_ehr_plus_ct_report_vec/AutoGluonModels/
+  /root/autodl-fs/lyy/unified_runs/text_ehr_plus_ct_report_vec/metrics.json
+
+冻结副本：
+
+  /root/autodl-fs/lyy/frozen_models/task_02_ehr_cttext_AutoGluonModels/
+  /root/autodl-fs/lyy/frozen_models/task_02_text_cttext_metrics.json
+
+====== 任务 03：纯 3D CT（MONAI ResNet18）======
+权重（训练脚本默认保存）：
+  /root/autodl-fs/lyy/unified_runs/ct/best_ct_resnet18.pth
+指标：
+  /root/autodl-fs/lyy/unified_runs/ct/metrics.json
+
+冻结副本：
+  /root/autodl-fs/lyy/frozen_models/task_03_pure_ct_resnet18.pth
+  /root/autodl-fs/lyy/frozen_models/task_03_pure_ct_metrics.json
+
+====== 任务 04：多模态（EHR + initial_vec + 512 维影像特征，MLP 融合）======
+说明：用于复现 test AUC ~0.80 的 checkpoint 在 unified_runs，同时在 frozen_models 有一份拷贝。
+
+权重：
+  /root/autodl-fs/lyy/unified_runs/multimodal_mlp_fusion/mlp_fusion_best.pt
+  /root/autodl-fs/lyy/frozen_models/task_04_multimodal_mlp_fusion.pt
+指标：
+  /root/autodl-fs/lyy/unified_runs/multimodal_mlp_fusion/metrics.json
+  /root/autodl-fs/lyy/frozen_models/task_04_multimodal_mlp_metrics.json
+
+====== 多模态依赖：预抽取的 512 维影像特征（488 行）======
+  /root/autodl-fs/lyy/unified_runs/image_features_ct488.csv
+冻结目录内的副本（若存在）：
+  /root/autodl-fs/lyy/frozen_models/aux_image_features_ct488.csv
+
+====== 其它实验目录（非四任务主线，需则自行查看）======
+  /root/autodl-fs/lyy/unified_runs/multimodal_expert_stack/
+  /root/autodl-fs/lyy/unified_runs/multimodal_film_attn/
+  /root/autodl-fs/lyy/unified_runs/multimodal/            （AutoGluon 宽表多模态，若跑过）
+
+====== 训练脚本入口 ======
+四任务统一入口：
+  /root/autodl-fs/lyy/unified_four_modalities.py
+MLP 多模态（~0.8）：
+  /root/autodl-fs/lyy/multimodal_mlp_fusion.py
+FiLM+Cross-Attn：
+  /root/autodl-fs/lyy/multimodal_film_attention.py
+专家 stacking：
+  /root/autodl-fs/lyy/multimodal_expert_stack.py
+
+====== 外部数据推理 — 模型放哪、结果指什么 ======
+说明：外部队列需与训练时相同的表结构/预处理；global_id 规则见主表列说明。
+
+  任务 01
+    · 模型目录：frozen_models/task_01_ehr_AutoGluonModels（或 unified_runs/text_ehr/AutoGluonModels）
+    · 加载：from autogluon.tabular import TabularPredictor；TabularPredictor.load(上述目录)
+    · 输入：与「纯 EHR」训练时相同的特征列（见 unified_four_modalities / onlytext_renumbered 管线）；无 label 时只 predict_proba
+    · 指标快照：task_01_text_ehr_metrics.json
+
+  任务 02
+    · 模型目录：frozen_models/task_02_ehr_cttext_AutoGluonModels（或 unified_runs/.../AutoGluonModels）
+    · 加载：同上 TabularPredictor.load
+    · 输入：EHR 列 + initial_vec_*（CT 报告向量）；需与训练时同一套 embedding/拼接逻辑
+    · 指标快照：task_02_text_cttext_metrics.json
+
+  任务 03
+    · 权重：frozen_models/task_03_pure_ct_resnet18.pth（或 unified_runs/ct/best_ct_resnet18.pth）
+    · 架构与预处理：multimodal 脚本中与 3D ResNet18 一致的 NIfTI 管线（spacing、强度裁剪等）
+    · 指标快照：task_03_pure_ct_metrics.json；完整训练 log：unified_runs/ct/metrics.json
+
+  任务 04（MLP 融合）
+    · 权重：frozen_models/task_04_multimodal_mlp_fusion.pt（或 unified_runs/multimodal_mlp_fusion/mlp_fusion_best.pt）
+    · 输入表：EHR + initial_vec_* + img_feat_0…img_feat_511（512 维）；影像向量可由同结构 CNN 前向得到，或对齐本库 extract_image_features
+    · 488 例上已抽好的特征（仅作对齐参考，外部数据需自己抽）：unified_runs/image_features_ct488.csv / frozen_models/aux_image_features_ct488.csv
+    · 指标快照：task_04_multimodal_mlp_metrics.json；完整：unified_runs/multimodal_mlp_fusion/metrics.json

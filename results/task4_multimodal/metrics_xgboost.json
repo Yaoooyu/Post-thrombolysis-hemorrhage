@@ -1,0 +1,21 @@
+{
+  "model": "xgboost",
+  "calibrated": false,
+  "val_roc_auc": 0.7470588235294118,
+  "test_roc_auc": 0.7803030303030303,
+  "val_pr_auc": 0.718794793011827,
+  "test_pr_auc": 0.7672528864648289,
+  "test_auc_bootstrap_ci95": {
+    "median": 0.7813716556098272,
+    "p2_5": 0.6464109299516908,
+    "p97_5": 0.8759045542635658,
+    "n_boot_effective": 500
+  },
+  "n_train": 341,
+  "n_val": 74,
+  "n_test": 73,
+  "n_features": 536,
+  "seed": 42,
+  "train_seconds": 4.0906524658203125,
+  "calibration_method": "none"
+}
