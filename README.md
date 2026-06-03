@@ -37,6 +37,26 @@ figures/                      ROC/PR, confusion matrices, model structure figure
 docs/                         Notes for model artifacts and data availability
 ```
 
+## Figure Gallery
+
+All display figures are stored under the `figures/` directory.
+
+### Task 1-3 Comparison
+
+![Task 1-3 ROC comparison](figures/task1_task3/compare/roc_task01_task02_test.png)
+
+### Task 4 Internal Validation
+
+![Task 4 composite performance](figures/task4_internal/selected6_composite_performance.png)
+
+![Task 4 confusion matrices](figures/task4_internal/selected6_confusion_matrices.png)
+
+### External Validation
+
+![External ROC and PR curves](figures/external_validation/external_center_optimized_roc_pr_curves.png)
+
+![External adaptation comparison](figures/external_validation/external_center_optimized_adaptation_comparison.png)
+
 ## Data and Model Weights
 
 Raw CT images and full clinical tables are not included. Only the final selected main model is included; all other model weights are excluded while scripts, parameters, metrics, and prediction outputs are retained for reproducibility. See `docs/MODEL_ARTIFACTS.md` and `docs/DATA_AVAILABILITY.md`.
